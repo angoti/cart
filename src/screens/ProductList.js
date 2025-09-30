@@ -5,18 +5,14 @@ import { getProducts } from "../services/productsService.js";
 
 export const ProductsList = ({ navigation }) => {
 	const [products, setProducts] = useState([]);
-	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		const loadProducts = async () => {
 			try {
-				setLoading(true);
 				const productsData = await getProducts();
 				setProducts(productsData);
 			} catch (error) {
 				console.error("Erro ao carregar produtos:", error);
-			} finally {
-				setLoading(false);
 			}
 		};
 

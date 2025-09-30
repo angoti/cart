@@ -6,19 +6,15 @@ import { numberFormat } from "../services/numberFormat";
 export const ProductDetails = ({ route, addItemToCart }) => {
 	const { productId } = route.params;
 	const [product, setProduct] = useState({});
-	const [loading, setLoading] = useState(true);
-	const [imageError, setImageError] = useState(false);
 
 	useEffect(() => {
 		const loadProduct = async () => {
 			try {
-				setLoading(true);
 				const productData = await getProduct(productId);
 				setProduct(productData || {});
 			} catch (error) {
 				console.error("Erro ao carregar produto:", error);
 			} finally {
-				setLoading(false);
 			}
 		};
 
