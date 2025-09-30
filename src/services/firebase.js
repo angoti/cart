@@ -1,14 +1,14 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
-// Configuração do Firebase - substitua pelos seus dados do projeto
+// Configuração do Firebase - usa variáveis de ambiente
 const firebaseConfig = {
-	apiKey: "AIzaSyBlc_Rmm3CPxl7up7WSUnVcjAv7yuNijwU",
-	authDomain: "comercio-eletronico-733e9.firebaseapp.com",
-	projectId: "comercio-eletronico-733e9",
-	storageBucket: "comercio-eletronico-733e9.firebasestorage.app",
-	messagingSenderId: "952477633637",
-	appId: "1:952477633637:web:fdf93e1ea1d8f5c23a4a8c",
+	apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
+	authDomain: process.env.EXPO_PUBLIC_FIREBASE_AUTH_DOMAIN,
+	projectId: process.env.EXPO_PUBLIC_FIREBASE_PROJECT_ID,
+	storageBucket: process.env.EXPO_PUBLIC_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: process.env.EXPO_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+	appId: process.env.EXPO_PUBLIC_FIREBASE_APP_ID,
 };
 
 // Inicializar Firebase
