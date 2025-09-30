@@ -1,4 +1,4 @@
-import { View, Text, Image, FlatList, TouchableOpacity } from "react-native";
+import { View, Text, Image, FlatList, TouchableOpacity, SafeAreaView } from "react-native";
 import { numberFormat } from "../services/numberFormat";
 import { styles } from "./../styles/styles";
 
@@ -99,7 +99,7 @@ export const Cart = ({ items, onUpdateQuantity, onRemoveItem }) => {
 	);
 
 	return (
-		<View style={styles.cartContainer}>
+		<SafeAreaView style={styles.cartContainer}>
 			<View style={styles.cartHeader}>
 				<Text style={styles.cartTitle}>
 					🛒 Meu Carrinho ({items.length} {items.length === 1 ? "item" : "itens"})
@@ -127,12 +127,10 @@ export const Cart = ({ items, onUpdateQuantity, onRemoveItem }) => {
 							// Implementar checkout
 							console.log("Finalizar compra");
 						}}>
-						<Text style={styles.checkoutButtonText}>
-							💳 Finalizar Compra
-						</Text>
+						<Text style={styles.checkoutButtonText}>💳 Finalizar Compra</Text>
 					</TouchableOpacity>
 				</>
 			)}
-		</View>
+		</SafeAreaView>
 	);
 };
