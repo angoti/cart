@@ -6,12 +6,13 @@ import {
 	ScrollView,
 	TouchableOpacity,
 	SafeAreaView,
-	StatusBar,
 	Alert,
 } from "react-native";
 import { getProduct } from "../services/productsService";
 import { numberFormat } from "../services/numberFormat";
 import { styles } from "../styles/styles";
+import Feather from "@expo/vector-icons/Feather";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 export const ProductDetails = ({ route, addItemToCart, navigation }) => {
 	const { productId } = route.params;
@@ -85,7 +86,6 @@ export const ProductDetails = ({ route, addItemToCart, navigation }) => {
 
 	return (
 		<SafeAreaView style={styles.productDetailContainer}>
-			<StatusBar barStyle="dark-content" backgroundColor="transparent" translucent />
 
 			{/* Header com imagem do produto */}
 			<View style={styles.productDetailHeader}>
@@ -152,27 +152,27 @@ export const ProductDetails = ({ route, addItemToCart, navigation }) => {
 					<Text style={styles.productDetailQuantityLabel}>Quantidade</Text>
 					<View style={styles.productDetailQuantityControls}>
 						<TouchableOpacity
-							style={[
-								styles.productDetailQuantityButton,
-								quantity <= 1 && styles.productDetailQuantityButtonDisabled,
-							]}
 							onPress={() => handleQuantityChange(-1)}
 							activeOpacity={0.7}
 							disabled={quantity <= 1}>
-							<Text style={styles.productDetailQuantityButtonText}>-</Text>
+							<MaterialIcons
+								name="remove-circle"
+								size={44}
+								color={quantity <= 1 ? "#bdc3c7" : "#3498db"}
+							/>
 						</TouchableOpacity>
 
 						<Text style={styles.productDetailQuantityText}>{quantity}</Text>
 
 						<TouchableOpacity
-							style={[
-								styles.productDetailQuantityButton,
-								quantity >= 10 && styles.productDetailQuantityButtonDisabled,
-							]}
 							onPress={() => handleQuantityChange(1)}
 							activeOpacity={0.7}
 							disabled={quantity >= 10}>
-							<Text style={styles.productDetailQuantityButtonText}>+</Text>
+							<MaterialIcons
+								name="add-circle"
+								size={44}
+								color={quantity >= 10 ? "#bdc3c7" : "#3498db"}
+							/>
 						</TouchableOpacity>
 					</View>
 				</View>
@@ -183,21 +183,16 @@ export const ProductDetails = ({ route, addItemToCart, navigation }) => {
 			{/* Footer fixo com botões */}
 			<View style={styles.productDetailFooter}>
 				<TouchableOpacity
-					style={styles.productDetailFavoriteActionButton}
-					onPress={toggleFavorite}
-					activeOpacity={0.8}>
-					<Text style={{ fontSize: 20, color: isFavorite ? "#e74c3c" : "#7f8c8d" }}>
-						{isFavorite ? "♥" : "♡"}
-					</Text>
-				</TouchableOpacity>
-
-				<TouchableOpacity
 					style={styles.productDetailAddToCartButton}
 					onPress={handleAddToCart}
 					activeOpacity={0.8}>
-					<Text style={styles.productDetailAddToCartButtonText}>
-						🛒 Adicionar ao Carrinho ({quantity})
-					</Text>
+					<View
+						style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-evenly" }}>
+						<Feather name="shopping-cart" size={28} color="white" />
+						<Text style={styles.productDetailAddToCartButtonText}>
+							Adicionar ao Carrinho ({quantity})
+						</Text>
+					</View>
 				</TouchableOpacity>
 			</View>
 		</SafeAreaView>

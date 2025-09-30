@@ -1,17 +1,10 @@
 import { useEffect, useState } from "react";
-import {
-	FlatList,
-	View,
-	Text,
-	ActivityIndicator,
-	SafeAreaView,
-	TouchableOpacity,
-} from "react-native";
+import { FlatList, View, Text, ActivityIndicator, SafeAreaView, StatusBar } from "react-native";
 import { Product } from "../components/Product.js";
 import { getProducts } from "../services/productsService.js";
 import { styles } from "../styles/styles.js";
 
-export const ProductsList = ({ navigation, getItemsCount }) => {
+export const ProductsList = ({ navigation }) => {
 	const [products, setProducts] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
@@ -89,6 +82,8 @@ export const ProductsList = ({ navigation, getItemsCount }) => {
 
 	return (
 		<SafeAreaView style={styles.productListContainer}>
+			<StatusBar barStyle="dark-content" backgroundColor="transparent" />
+
 			{renderHeader()}
 			<FlatList
 				data={products}
@@ -105,21 +100,6 @@ export const ProductsList = ({ navigation, getItemsCount }) => {
 				maxToRenderPerBatch={8}
 				windowSize={10}
 			/>
-
-			{/* Botão flutuante do carrinho */}
-			<TouchableOpacity
-				style={styles.floatingCartButton}
-				onPress={() => navigation.navigate("Cart")}
-				activeOpacity={0.8}>
-				<Text style={styles.floatingCartButtonText}>🛒</Text>
-				{getItemsCount() > 0 && (
-					<View style={styles.floatingCartBadge}>
-						<Text style={styles.floatingCartBadgeText}>
-							{getItemsCount() > 99 ? "99+" : getItemsCount()}
-						</Text>
-					</View>
-				)}
-			</TouchableOpacity>
 		</SafeAreaView>
 	);
 };

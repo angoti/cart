@@ -553,7 +553,7 @@ export const styles = StyleSheet.create({
 		backgroundColor: "#27ae60",
 		paddingVertical: 16,
 		borderRadius: 12,
-		alignItems: "center",
+		alignItems: "stretch", 
 		shadowColor: "#27ae60",
 		shadowOffset: {
 			width: 0,
@@ -567,6 +567,7 @@ export const styles = StyleSheet.create({
 		color: "white",
 		fontSize: 18,
 		fontWeight: "bold",
+		borderWidth: 0,
 	},
 	productDetailFavoriteActionButton: {
 		width: 56,

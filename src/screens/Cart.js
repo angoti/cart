@@ -1,6 +1,7 @@
 import { View, Text, Image, FlatList, TouchableOpacity, SafeAreaView } from "react-native";
 import { numberFormat } from "../services/numberFormat";
 import { styles } from "./../styles/styles";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 export const Cart = ({ items, onUpdateQuantity, onRemoveItem }) => {
 	// Calcular total do carrinho
@@ -49,20 +50,14 @@ export const Cart = ({ items, onUpdateQuantity, onRemoveItem }) => {
 				</View>
 
 				<View style={styles.quantityContainer}>
-					<TouchableOpacity
-						style={[styles.quantityButton, qty <= 1 && styles.quantityButtonDisabled]}
-						onPress={() => handleQuantityChange(item, -1)}
-						activeOpacity={0.7}>
-						<Text style={styles.quantityButtonText}>-</Text>
+					<TouchableOpacity onPress={() => handleQuantityChange(item, -1)} activeOpacity={0.7}>
+						<MaterialIcons name="remove-circle" size={44} color="#3498db" />
 					</TouchableOpacity>
 
 					<Text style={styles.quantityText}>{qty}</Text>
 
-					<TouchableOpacity
-						style={styles.quantityButton}
-						onPress={() => handleQuantityChange(item, 1)}
-						activeOpacity={0.7}>
-						<Text style={styles.quantityButtonText}>+</Text>
+					<TouchableOpacity onPress={() => handleQuantityChange(item, 1)} activeOpacity={0.7}>
+						<MaterialIcons name="add-circle" size={44} color="#3498db" />
 					</TouchableOpacity>
 				</View>
 			</View>
